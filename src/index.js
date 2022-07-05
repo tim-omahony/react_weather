@@ -13,8 +13,7 @@ class App extends React.Component {
     );
   }
 
-  // requirement of React: render has to be defined
-  render() {
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
       return <div>Error: {this.state.errorMessage}</div>;
     }
@@ -22,12 +21,16 @@ class App extends React.Component {
     if (!this.state.errorMessage && this.state.lat) {
       return (
         <div>
-          <SeasonDisplay lat={this.state.lat} />
+          <SeasonDisplay lat={this.state.lat} />;
         </div>
       );
     }
 
-    return <Loader />;
+    return <Loader message="Please accept location request" />;
+  }
+  // requirement of React: render has to be defined
+  render() {
+    return <div className="border red">{this.renderContent()}</div>;
   }
 }
 
